@@ -3,10 +3,14 @@
   <body>
     <h2>JavaScript HTML DOM</h2>
 
-    <p id="intro">Recherche d element HTML par identifiant (id)</p>
+    <p id="intro">
+      <b style="color: aqua">First paragraph</b> Recherche d element HTML par
+      identifiant (id)
+    </p>
     <p>
       Cette exemple demontre l'utilisation de la methode <b>getElementsById</b>.
     </p>
+    <p id="demo_id" style="color: rgb(60, 210, 5)"></p>
 
     <p>Recherche d'éléments HTML par nom de balise (tag).</p>
     <p>
@@ -14,22 +18,36 @@
       <b>getElementsByTagName</b>
     </p>
 
-    <p id="demo"></p>
+    <p id="demo_tag" style="color: brown">x</p>
+
+    <p>Recherche d'éléments HTML par nom de la class (class).</p>
+    <p class="intro" style="color: rgb(206, 7, 173)">Hello World!</p>
+    <p class="intro">
+      Cette exemple demontre l'utilisation de la methode
+      <b>getElementsByClassName</b>
+    </p>
+
+    <p id="demo_class" style="color: rgb(46, 1, 210)">xx</p>
 
     <script>
       // Recherche d element HTML par identifiant (id)
       const element = document.getElementById("intro");
 
-      document.getElementById("demo").innerHTML =
+      document.getElementById("demo_id").innerHTML =
         "The text from the intro paragraph is: " + element.innerHTML;
 
       // Recherche d'éléments HTML par nom de balise (tag)
-      element = document.getElementsByTagName("p");
+      let el = document.getElementsByTagName("p");
 
-      document.getElementById("demo").innerHTML =
-        "The text in first paragraph (index 0) is: " + element[0].innerHTML;
+      document.getElementById("demo_tag").innerHTML =
+        "The text in first paragraph (index 0) is: " + el[0].outerHTML;
 
-        
+      // Recherche d'éléments HTML par nom de la class (class)
+
+      const xt = document.getElementsByClassName("intro");
+      document.getElementById("demo_class").innerHTML =
+        'The first paragraph (index 0) with class="intro" is: ' +
+        xt[0].outerHTML;
     </script>
   </body>
 </html>
