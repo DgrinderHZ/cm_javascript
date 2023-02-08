@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calcul</title>
+    <style>
+      .container {
+        width: 200px;
+        height: 350px;
+        border-radius: 2%;
+        background-color: rgb(33, 0, 94);
+      }
+      .screen {
+        width: 190px;
+        height: 50px;
+        border-radius: 2%;
+        margin: auto;
+        background-color: rgba(144, 254, 217, 0.897);
+      }
+      #buttons {
+        width: 190px;
+        height: 300px;
+        margin: auto;
+        border-radius: 2%;
+        background-color: aqua;
+        display: flex;
+      }
+      .btn {
+        width: 25px;
+        height: 25px;
+        background-color: aliceblue;
+        text-align: center;
+        border-radius: 2%;
+        margin: 2px 2px;
+        flex-grow: 4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="screen"></div>
+      <div id="buttons">
+        <div id="btn_ac" class="btn">AC</div>
+        <div id="btn_sup" class="btn"><--</div>
+      </div>
+    </div>
+
+    <script>
+      let but = document.getElementById("buttons");
+
+      for (let chiffre = 0; chiffre <= 11; chiffre++) {
+        div = document.createElement("div");
+        const att = document.createAttribute("class");
+
+        // Set the value of the class attribute:
+        att.value = "btn";
+        div.setAttributeNode(att);
+        div.innerHTML = "" + chiffre;
+
+        but.appendChild(div);
+      }
+    </script>
+  </body>
+</html>
