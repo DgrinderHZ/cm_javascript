@@ -12,7 +12,7 @@
         border-radius: 2%;
         background-color: rgb(33, 0, 94);
       }
-      .screen {
+      #screen {
         width: 190px;
         height: 50px;
         border-radius: 2%;
@@ -26,10 +26,11 @@
         border-radius: 2%;
         background-color: aqua;
         display: flex;
+        flex-wrap: wrap;
       }
       .btn {
-        width: 25px;
-        height: 25px;
+        width: 35px;
+        height: 35px;
         background-color: aliceblue;
         text-align: center;
         border-radius: 2%;
@@ -40,26 +41,89 @@
   </head>
   <body>
     <div class="container">
-      <div class="screen"></div>
+      <div id="screen">
+        <p id="exp"></p>
+        <p id="res"></p>
+      </div>
       <div id="buttons">
-        <div id="btn_ac" class="btn">AC</div>
-        <div id="btn_sup" class="btn"><--</div>
+        <div id="btn_ac" class="btn" onclick="getContent(this)">AC</div>
+        <div id="btn_sup" class="btn" onclick="getContent(this)">X</div>
+        <div id="btn_p" class="btn" onclick="getContent(this)">+</div>
+        <div id="btn_mi" class="btn" onclick="getContent(this)">-</div>
+        <div id="btn_mu" class="btn" onclick="getContent(this)">*</div>
+        <div id="btn_d" class="btn" onclick="getContent(this)">/</div>
+        <div id="btn_e" class="btn" onclick="getContent(this)">=</div>
+        <div id="btn_v" class="btn" onclick="getContent(this)">.</div>
       </div>
     </div>
 
     <script>
       let but = document.getElementById("buttons");
+      let exp = document.getElementById("exp");
+      let res = document.getElementById("res");
 
-      for (let chiffre = 0; chiffre <= 11; chiffre++) {
+      for (let chiffre = 0; chiffre <= 9; chiffre++) {
         div = document.createElement("div");
         const att = document.createAttribute("class");
+        const at = document.createAttribute("onclick");
 
         // Set the value of the class attribute:
         att.value = "btn";
+        at.value = "getContent(this)";
         div.setAttributeNode(att);
+        div.setAttributeNode(at);
         div.innerHTML = "" + chiffre;
 
         but.appendChild(div);
+      }
+
+      function getContent(e) {
+        let a = 0;
+        let op = "";
+        let b = 0;
+        switch (e.innerHTML) {
+          case "AC":
+            exp.innerHTML = "";
+            res.innerHTML = 0;
+            break;
+          case "X":
+            let content = exp.innerHTML;
+            exp.innerHTML = content.slice(0, content.length - 1);
+            break;
+          case "=":
+            let expression = exp.innerHTML;
+            let operand2 = expression.slice(expression.indexOf(op) + 1);
+
+            b = parseFloat(operand2);
+            res.innerHTML =op;
+            break;
+          case "+":
+            a = parseFloat(exp.innerHTML);
+            op = e.innerHTML;
+            exp.innerHTML += op;
+            break;
+          case "-":
+          case "*":
+          case "/":
+            a = parseFloat(exp.innerHTML);
+            op = e.innerHTML;
+            exp.innerHTML += op;
+            break;
+          default:
+            exp.innerHTML += e.innerHTML;
+            break;
+        }
+      }
+
+      function calculer(a, b, op) {
+        switch (op) {
+          case "+":
+            return a + b;
+            break;
+
+          default:
+            break;
+        }
       }
     </script>
   </body>
